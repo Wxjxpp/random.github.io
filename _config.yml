@@ -1,0 +1,28 @@
+# GitHub Pages 配置文件
+
+# 网站信息
+title: 随机数生成器
+description: 一个简洁、美观且功能强大的在线随机数生成器
+url: https://wxjxpp.github.io/random.github.io
+baseurl: /random.github.io
+
+# Jekyll 配置
+theme: jekyll-theme-minimal
+markdown: kramdown
+encoding: utf-8
+
+# 排除文件和文件夹
+exclude:
+  - .gitignore
+  - README.md
+  - node_modules/
+  - package.json
+  - yarn.lock
+
+# 包含隐藏文件
+include:
+  - .htaccess
+
+# 输出配置
+permalink: /:title/
+future: false
