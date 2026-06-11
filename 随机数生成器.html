@@ -128,7 +128,7 @@
             min-height: 100vh;
             min-height: 100dvh;
             margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Misans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: var(--bg);
             color: var(--text);
             display: flex;
@@ -1556,7 +1556,7 @@
             background: var(--about-bg) !important;
             color: var(--about-text) !important;
             box-shadow: none !important;
-            animation: none !important;
+            animation: none;
         }
         #aboutPanel .dev-sheet::before,
         #aboutPanel .dev-sheet::after {
@@ -1969,6 +1969,188 @@
             }
         }
 
+        #aboutPanel.open .dev-sheet {
+            animation: none !important;
+        }
+        #aboutPanel.closing .dev-sheet,
+        #aboutPanel #aboutPanel .dev-sheet,
+        #aboutPanel.closing #aboutPanel .dev-sheet {
+            animation: sheetDown 0.32s cubic-bezier(0.32, 0.8, 0.64, 1) both !important;
+            transition: none !important;
+        }
+        #aboutPanel.closing .dev-sheet::before {
+            animation: aboutBgOut 0.28s ease both !important;
+        }
+        @keyframes sheetDown {
+            from { transform: translateY(0); opacity: 1; }
+            to   { transform: translateY(48px); opacity: 0; }
+        }
+        @keyframes aboutBgOut {
+            from { opacity: 1; filter: blur(0); }
+            to   { opacity: 0; filter: blur(12px); }
+        }
+
+    
+
+        /* Main page glass refresh: no gradient */
+        :root {
+            --glass-page-bg: #f3efea;
+            --glass-card-bg: rgba(255, 255, 255, 0.78);
+            --glass-panel-bg: rgba(255, 255, 255, 0.62);
+            --glass-soft-bg: rgba(255, 255, 255, 0.48);
+            --glass-control-bg: rgba(255, 255, 255, 0.72);
+            --glass-line: rgba(255, 255, 255, 0.82);
+            --glass-line-soft: rgba(112, 92, 78, 0.14);
+            --glass-shadow-main: 0 22px 60px rgba(89, 70, 54, 0.16);
+            --glass-shadow-soft: 0 10px 28px rgba(89, 70, 54, 0.10);
+        }
+        html[data-theme="dark"] {
+            --glass-page-bg: #15130f;
+            --glass-card-bg: rgba(43, 38, 33, 0.88);
+            --glass-panel-bg: rgba(54, 48, 42, 0.74);
+            --glass-soft-bg: rgba(66, 58, 50, 0.52);
+            --glass-control-bg: rgba(64, 56, 48, 0.76);
+            --glass-line: rgba(255, 255, 255, 0.16);
+            --glass-line-soft: rgba(255, 255, 255, 0.095);
+            --glass-shadow-main: 0 24px 72px rgba(0, 0, 0, 0.48);
+            --glass-shadow-soft: 0 12px 32px rgba(0, 0, 0, 0.30);
+        }
+        html, body { background: var(--glass-page-bg) !important; }
+        body { gap: 20px !important; }
+        .card, .hitokoto-card {
+            max-width: 560px !important;
+            border-radius: 30px !important;
+            background: var(--glass-card-bg) !important;
+            border: 1px solid var(--glass-line) !important;
+            box-shadow: var(--glass-shadow-main), inset 0 1px 0 rgba(255,255,255,.20) !important;
+            backdrop-filter: blur(26px) saturate(1.18) !important;
+            -webkit-backdrop-filter: blur(26px) saturate(1.18) !important;
+        }
+        .content { background: transparent !important; padding-bottom: 24px !important; }
+        .header {
+            background: var(--glass-panel-bg) !important;
+            border-bottom: 1px solid var(--glass-line-soft) !important;
+            box-shadow: inset 0 -1px 0 rgba(255,255,255,.06) !important;
+        }
+        .top-ad, .lights-panel, .prob-section {
+            background: var(--glass-panel-bg) !important;
+            border: 1px solid var(--glass-line-soft) !important;
+            border-radius: 24px !important;
+            box-shadow: var(--glass-shadow-soft), inset 0 1px 0 rgba(255,255,255,.10) !important;
+            backdrop-filter: blur(20px) saturate(1.12) !important;
+            -webkit-backdrop-filter: blur(20px) saturate(1.12) !important;
+        }
+        .result-box, .lights-stats, .lights-grid, .weight-list, .prob-list {
+            background: var(--glass-soft-bg) !important;
+            border: 1px solid var(--glass-line-soft) !important;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.08) !important;
+            backdrop-filter: blur(18px) saturate(1.08) !important;
+            -webkit-backdrop-filter: blur(18px) saturate(1.08) !important;
+        }
+        .result-box { border-radius: 22px !important; }
+        .lights-grid { border-radius: 22px !important; padding: 10px !important; }
+        input, select, textarea, .range-input, .theme-btn, .dev-btn, .reset-btn, .reset-cycle-btn, .add-btn, .about-btn, .lights-toggle, .lights-collapse-btn {
+            background: var(--glass-control-bg) !important;
+            border: 1px solid var(--glass-line-soft) !important;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.10), 0 8px 20px rgba(0,0,0,.08) !important;
+        }
+        .gen-btn {
+            border-radius: 18px !important;
+            box-shadow: 0 12px 26px rgba(217,119,86,.24), inset 0 1px 0 rgba(255,255,255,.28) !important;
+        }
+        .light-item {
+            border-radius: 14px !important;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.10), 0 8px 18px rgba(0,0,0,.10) !important;
+        }
+        html[data-theme="dark"] .light-item:not(.off) {
+            background: #6a4a2f !important;
+            border-color: rgba(255,255,255,.10) !important;
+        }
+        .hitokoto-card {
+            width: min(560px, calc(100vw - 40px)) !important;
+            margin: 4px auto 0 !important;
+            padding: 14px 18px !important;
+            border-radius: 22px !important;
+        }
+        .hitokoto-card-head { align-items: center !important; }
+        .top-ad-dots {
+            background: rgba(255,255,255,.18) !important;
+            border: 1px solid var(--glass-line-soft) !important;
+        }
+        html[data-theme="dark"] .rnum.idle,
+        html[data-theme="dark"] .result-label,
+        html[data-theme="dark"] .lights-title {
+            color: rgba(245, 238, 232, 0.92) !important;
+        }
+        @media (max-width: 560px) {
+            .card, .hitokoto-card { width: calc(100vw - 32px) !important; max-width: none !important; }
+            body { padding-left: 16px !important; padding-right: 16px !important; }
+        }
+
+        /* About page green aurora accent */
+        #aboutPanel.open .dev-sheet::before {
+            background: radial-gradient(ellipse at 30% 20%, rgba(100, 200, 120, 0.22), transparent 60%),
+                        radial-gradient(ellipse at 70% 80%, rgba(100, 200, 120, 0.18), transparent 50%),
+                        radial-gradient(ellipse at 50% 50%, rgba(255, 92, 116, 0.14), transparent 70%),
+                        radial-gradient(ellipse at 20% 90%, rgba(37, 113, 255, 0.16), transparent 60%) !important;
+        }
+        html[data-theme="dark"] #aboutPanel.open .dev-sheet::before {
+            background: radial-gradient(ellipse at 30% 20%, rgba(80, 180, 100, 0.28), transparent 55%),
+                        radial-gradient(ellipse at 70% 80%, rgba(80, 180, 100, 0.22), transparent 45%),
+                        radial-gradient(ellipse at 50% 50%, rgba(255, 92, 116, 0.18), transparent 65%),
+                        radial-gradient(ellipse at 20% 90%, rgba(37, 113, 255, 0.20), transparent 55%) !important;
+        }
+
+        @keyframes aboutAuroraDrift {
+            0% {
+                transform: translate3d(-5%, -4%, 0) scale(1.04) rotate(-2deg);
+                background-position: 0% 20%, 100% 0%, 45% 100%, 0% 50%;
+                filter: blur(10px) saturate(1.12) hue-rotate(-8deg);
+            }
+            50% {
+                transform: translate3d(4%, 3%, 0) scale(1.12) rotate(2deg);
+                background-position: 85% 30%, 20% 60%, 80% 35%, 100% 45%;
+                filter: blur(14px) saturate(1.35) hue-rotate(12deg);
+            }
+            100% {
+                transform: translate3d(2%, -5%, 0) scale(1.16) rotate(-1deg);
+                background-position: 100% 90%, 0% 100%, 10% 10%, 35% 100%;
+                filter: blur(12px) saturate(1.28) hue-rotate(-4deg);
+            }
+        }
+        @keyframes aboutAuroraGlow {
+            0% {
+                opacity: 0.65;
+                filter: brightness(0.9) blur(18px);
+            }
+            50% {
+                opacity: 1;
+                filter: brightness(1.15) blur(14px);
+            }
+            100% {
+                opacity: 0.65;
+                filter: brightness(0.9) blur(18px);
+            }
+        }
+
+        .about-os-title {
+            font-size: 36px !important;
+            font-weight: 800 !important;
+            color: #ffffff !important;
+            letter-spacing: 2px !important;
+            text-align: center !important;
+            width: 100% !important;
+        }
+        .about-w {
+            color: #2571ff !important;
+            font-weight: 900 !important;
+        }
+
+        .rnum.final {
+            animation: springPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            text-shadow: 0 0 20px rgba(217, 119, 86, 0.45), 0 0 40px rgba(217, 119, 86, 0.22), 0 0 60px rgba(217, 119, 86, 0.12);
+        }
+
     </style>
 </head>
 <body class="has-top-ad">
@@ -2054,7 +2236,7 @@
             <div class="about-hyperos">
                 <div class="about-os-hero">
                     <div class="about-os-hero-content">
-                        <div class="about-os-title">关于此应用</div>
+                        <div class="about-os-title"><span class="about-w">W</span>Random</div>
                         <div class="about-os-version">Random Number Generator · Class Edition</div>
                     </div>
                 </div>
@@ -2404,8 +2586,14 @@ if (this.effectiveTotal <= 0 || this.effectiveTotal > validSet.size) this.effect
         const aboutPanel = document.getElementById('aboutPanel');
         const aboutCloseBtn = document.getElementById('aboutCloseBtn');
         if (aboutBtn && aboutPanel) aboutBtn.addEventListener('click', ()=>aboutPanel.classList.add('open'));
-        if (aboutCloseBtn && aboutPanel) aboutCloseBtn.addEventListener('click', ()=>aboutPanel.classList.remove('open'));
-        if (aboutPanel) aboutPanel.addEventListener('click', e=>{if(e.target.id==='aboutPanel') e.target.classList.remove('open');});
+        if (aboutCloseBtn && aboutPanel) aboutCloseBtn.addEventListener('click', ()=>{
+            aboutPanel.classList.add('closing');
+            setTimeout(()=>aboutPanel.classList.remove('open','closing'), 320);
+        });
+        if (aboutPanel) aboutPanel.addEventListener('click', e=>{if(e.target.id==='aboutPanel'){
+            aboutPanel.classList.add('closing');
+            setTimeout(()=>aboutPanel.classList.remove('open','closing'), 320);
+        }});
         document.getElementById('devToggle').addEventListener('click',()=>{
             this.devMode=!this.devMode; this.syncToggle(); this.save();
             if(this.lightsEnabled) { this.rebuildRemainingSet(); this.renderLightsUI(); }
